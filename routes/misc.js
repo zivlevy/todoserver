@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
-
+const generate = require('fake-todos');
 
 /* ADD demo data. */
 router.get('/demo', function (req, res, next) {
@@ -10,7 +10,7 @@ router.get('/demo', function (req, res, next) {
         'learn an CSS',
         'learn an JS',
         'learn an TYPESCRIPT',
-        'learn an ANGULAR 2',
+        'learn an ANGULAR 5',
         'learn an COMPONENTS',
         'learn an SERVICES',
         'learn an MODULES',
@@ -34,6 +34,20 @@ router.get('/clearall', function (req, res, next) {
         if (err) return next(err);
         res.send('cleared db');
     })
+});
+
+
+router.get('/init', function (req, res, next) {
+    const items = generate(100);
+    // console.log(items)
+    items.forEach( item => {
+        const todo = {title:item.what, completed: item.done};
+        Todo.create(todo, function (err, result)  {
+            if (err) return err;
+        })
+    });
+    res.send('created 100');
+
 });
 
 

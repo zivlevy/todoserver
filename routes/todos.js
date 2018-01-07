@@ -38,9 +38,9 @@ router.put('/:id', function (req, res, next) {
 
 /* DELETE /todos/:id */
 router.delete('/:id', function (req, res, next) {
-    Todo.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    Todo.findByIdAndRemove(req.params.id, function (err, result) {
         if (err) return next(err);
-        res.json(post);
+        res.json(result);
     });
 });
 
