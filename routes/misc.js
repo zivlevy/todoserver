@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
-const generate = require('fake-todos');
+// const generate = require('fake-todos');
 
 /* ADD demo data. */
 router.get('/demo', function (req, res, next) {
@@ -37,18 +37,18 @@ router.get('/clearall', function (req, res, next) {
 });
 
 
-router.get('/init', function (req, res, next) {
-    const items = generate(100);
-    // console.log(items)
-    items.forEach( item => {
-        const todo = {title:item.what, completed: item.done};
-        Todo.create(todo, function (err, result)  {
-            if (err) return err;
-        })
-    });
-    res.send('created 100');
-
-});
+// router.get('/init', function (req, res, next) {
+//     const items = generate(100);
+//     // console.log(items)
+//     items.forEach( item => {
+//         const todo = {title:item.what, completed: item.done};
+//         Todo.create(todo, function (err, result)  {
+//             if (err) return err;
+//         })
+//     });
+//     res.send('created 100');
+//
+// });
 
 
 module.exports = router;
